@@ -1,5 +1,5 @@
 # Project Name
-Dynamo Examples to use as part of my Youtube channel.  
+Dynamo examples to use as part of my Youtube channel.  
 
 ## Installation
 Clone project or copy and paste from .py files.  
