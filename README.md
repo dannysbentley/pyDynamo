@@ -1,4 +1,4 @@
-# Project Name
+# Dynamo BIM Samples
 Dynamo examples to use as part of my Youtube channel.  
 
 ## Installation
