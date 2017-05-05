@@ -6,13 +6,18 @@ from System import Array
 
 path = IN[0]
 
+# Instantiate the Excel Application
 ex = Excel.ApplicationClass()
+# Make it Visiable for us all to see
 ex.Visible = True
+# Disable Alerts - Errors Ignore them, they're probably not important
 ex.DisplayAlerts = False
-
+# Workbook
 workbook = ex.Workbooks.Open(path)
+# WorkSheet
 ws = workbook.Worksheets[1]
 i = 0
+# Cell range
 x1range = ws.Range["A1", "A4"]
 sheetName = IN[1]
 a = Array.CreateInstance(object, len(sheetName),1) # row and column
