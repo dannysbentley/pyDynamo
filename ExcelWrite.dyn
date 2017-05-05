@@ -1,68 +1,55 @@
-<Workspace Version="1.3.0.875" X="-39.459452296056" Y="55.835382457102" zoom="0.899577183476054" ScaleFactor="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+<Workspace Version="1.3.0.875" X="-80.186146779475" Y="-45.3572792079589" zoom="0.937867132118444" ScaleFactor="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="9b72f571-ac1d-4420-b7ce-ba8db6ec9919" type="PythonNodeModels.PythonNode" nickname="Python Script" x="627.34029372534" y="82.5148382915675" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+    <PythonNodeModels.PythonNode guid="9b72f571-ac1d-4420-b7ce-ba8db6ec9919" type="PythonNodeModels.PythonNode" nickname="Python Script" x="613.440753511099" y="221.414146199663" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="False" />
       <Script>import clr
 
 clr.AddReference('Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c')
 from Microsoft.Office.Interop import Excel
-from System.Runtime.InteropServices import Marshal
 from System import Array
 
 path = IN[0]
-# Instantiate the Excel Application
+
 ex = Excel.ApplicationClass()
-# Make it Visiable for us all to see
 ex.Visible = True
-# Disable Alerts - Errors Ignore them, they're probably not important
 ex.DisplayAlerts = False
-# Workbook 
+
 workbook = ex.Workbooks.Open(path)
-# WorkSheet
 ws = workbook.Worksheets[1]
-# Cell range 
-xlrange = ws.Range["A1", "A6"]
-sheetName = IN[1]
 i = 0
-x = len(sheetName)
-a = Array.CreateInstance(object, x,1) # rows and column 
+x1range = ws.Range["A1", "A4"]
+sheetName = IN[1]
+a = Array.CreateInstance(object, len(sheetName),1) # row and column
+
 while i &lt; len(sheetName):
     a[i,0] = sheetName[i]
     i += 1
 
-xlrange.Value2 = a</Script>
+x1range.Value2 = a</Script>
     </PythonNodeModels.PythonNode>
-    <CoreNodeModels.Watch guid="619020ca-332e-4376-86db-d0f88eeac2fd" type="CoreNodeModels.Watch" nickname="Watch" x="756.692779143939" y="175.2683635312" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+    <CoreNodeModels.Watch guid="619020ca-332e-4376-86db-d0f88eeac2fd" type="CoreNodeModels.Watch" nickname="Watch" x="841.606408245626" y="236.538387250559" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
     </CoreNodeModels.Watch>
-    <CoreNodeModels.Input.Filename guid="659e2048-ac1e-4229-acba-f86136668cb0" type="CoreNodeModels.Input.Filename" nickname="File Path" x="226.540315424491" y="81.0865044058194" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <System.String>F:\00-PROGRAMING - DYNAMO\pyDynamo\pyTest\Sheets.xlsx</System.String>
-      <HintPath>F:\00-PROGRAMING - DYNAMO\pyDynamo\pyTest\Sheets.xlsx</HintPath>
+    <CoreNodeModels.Input.Filename guid="659e2048-ac1e-4229-acba-f86136668cb0" type="CoreNodeModels.Input.Filename" nickname="File Path" x="152.429613024594" y="189.127704653998" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>.\Sheets Write.xlsx</System.String>
+      <HintPath>F:\00-PROGRAMING - DYNAMO\pyDynamo\pyTest\Sheets Write.xlsx</HintPath>
     </CoreNodeModels.Input.Filename>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="61326cc2-c1a7-4cb9-81f5-1216b8858e2d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Sheet.SheetName" x="153.987493327917" y="326.975020904062" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Views.Sheet.SheetName">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="61326cc2-c1a7-4cb9-81f5-1216b8858e2d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Sheet.SheetName" x="144.523580878362" y="325.745455668718" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="RevitNodes.dll" function="Revit.Elements.Views.Sheet.SheetName">
       <PortInfo index="0" default="False" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <DSRevitNodesUI.Categories guid="b48630b9-71d4-4992-b125-0c486e077d30" type="DSRevitNodesUI.Categories" nickname="Categories" x="-227.993150961235" y="295.303512945974" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="422:Sheets" />
-    <DSRevitNodesUI.ElementsOfCategory guid="2a53f998-1af4-478d-ba7b-64415aff70ca" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="-35.8444640580208" y="329.954838098098" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+    <DSRevitNodesUI.Categories guid="b48630b9-71d4-4992-b125-0c486e077d30" type="DSRevitNodesUI.Categories" nickname="Categories" x="-393.393591754374" y="320.538387250559" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="422:Sheets" />
+    <DSRevitNodesUI.ElementsOfCategory guid="2a53f998-1af4-478d-ba7b-64415aff70ca" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="-127.393591754374" y="320.538387250559" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
     </DSRevitNodesUI.ElementsOfCategory>
-    <CoreNodeModels.CreateList guid="7cb2e1e2-ad7f-42f8-947a-d0968c288b9a" type="CoreNodeModels.CreateList" nickname="List.Create" x="351.998701853917" y="458.190219569505" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
-      <PortInfo index="0" default="False" />
-    </CoreNodeModels.CreateList>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="bc92ac56-14c8-4e27-814f-9e1fd3e0129e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FirstItem" x="470.755151309955" y="485.990270095298" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="DSCoreNodes.dll" function="DSCore.List.FirstItem@var[]..[]">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="9b72f571-ac1d-4420-b7ce-ba8db6ec9919" start_index="0" end="619020ca-332e-4376-86db-d0f88eeac2fd" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="659e2048-ac1e-4229-acba-f86136668cb0" start_index="0" end="9b72f571-ac1d-4420-b7ce-ba8db6ec9919" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="61326cc2-c1a7-4cb9-81f5-1216b8858e2d" start_index="0" end="7cb2e1e2-ad7f-42f8-947a-d0968c288b9a" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="61326cc2-c1a7-4cb9-81f5-1216b8858e2d" start_index="0" end="9b72f571-ac1d-4420-b7ce-ba8db6ec9919" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="b48630b9-71d4-4992-b125-0c486e077d30" start_index="0" end="2a53f998-1af4-478d-ba7b-64415aff70ca" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="2a53f998-1af4-478d-ba7b-64415aff70ca" start_index="0" end="61326cc2-c1a7-4cb9-81f5-1216b8858e2d" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="7cb2e1e2-ad7f-42f8-947a-d0968c288b9a" start_index="0" end="bc92ac56-14c8-4e27-814f-9e1fd3e0129e" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />
