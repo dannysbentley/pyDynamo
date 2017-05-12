@@ -42,6 +42,18 @@
     <Compile Include="ExcelWrite.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ParamaterCreate.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ParameterGet.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ParameterSet.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UIFilePath.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

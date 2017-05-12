@@ -1,0 +1,115 @@
+<Workspace Version="1.3.0.875" X="-60.6403457391413" Y="-105.515391392063" zoom="0.937441995359628" ScaleFactor="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="1560ce8c-a6b1-432f-ba9a-02b83bf3eb26" type="PythonNodeModels.PythonNode" nickname="Set Parameter" x="691.334102405928" y="479.64177062721" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+import sys
+
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference('RevitAPIUI')
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager 
+
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+app = DocumentManager.Instance.CurrentUIApplication.Application
+
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+elements = IN[0]
+
+
+outList = []
+familyType = []
+
+for i in UnwrapElement(elements):
+    p = i.LookupParameter("APZ Status")
+    TransactionManager.Instance.EnsureInTransaction(doc)
+    p.Set("Setting a Parameter")
+    TransactionManager.Instance.TransactionTaskDone()</Script>
+    </PythonNodeModels.PythonNode>
+    <DSRevitNodesUI.Categories guid="3ab39cda-9d3d-47d8-b8dd-be7f00129a25" type="DSRevitNodesUI.Categories" nickname="Categories" x="148.735049345667" y="321.067722674257" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="574:Walls" />
+    <CoreNodeModels.Input.StringInput guid="c4ae910d-c347-4e79-b295-a49fda9c0562" type="CoreNodeModels.Input.StringInput" nickname="String" x="415.595643968691" y="434.533861337128" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>your paramter name</System.String>
+      <System.String value="your paramter name" />
+    </CoreNodeModels.Input.StringInput>
+    <CoreNodeModels.Watch guid="d0ab3297-b41a-4e39-b22d-93d3b4b8f147" type="CoreNodeModels.Watch" nickname="Watch" x="905" y="392" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <DSRevitNodesUI.ElementsOfCategory guid="42b3ae68-83b1-42ec-ba4f-404a75974d9a" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="389" y="326" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </DSRevitNodesUI.ElementsOfCategory>
+    <PythonNodeModels.PythonNode guid="b49687fd-d7d0-4e3f-8045-2dd128c991ad" type="PythonNodeModels.PythonNode" nickname="Get Parameter" x="688.124994340464" y="195.622960492012" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+import sys
+
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference('RevitAPIUI')
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager 
+
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+app = DocumentManager.Instance.CurrentUIApplication.Application
+
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+elements = IN[0]
+parameter = IN[1]
+
+outList = []
+familyType = []
+
+for i in UnwrapElement(elements):
+    for j in i.Parameters:
+        if j.IsShared and j.Definition.Name == parameter:
+            parameterValue = i.get_Parameter(j.GUID)
+            outList.append(parameterValue.AsString())
+
+for i in UnwrapElement(IN[0]):
+    id = i.GetTypeId()
+    if id == ElementId.InvalidElementId:
+        familyType.append(None)
+    else:
+        familyType.append(doc.GetElement(id))
+
+builtInParamType = BuiltInParameter.ALL_MODEL_TYPE_MARK
+
+for i in UnwrapElement(familyType):
+    typeMark = i.get_Parameter(builtInParamType)
+    outList.append(typeMark.AsString())
+
+OUT = outList</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="3ab39cda-9d3d-47d8-b8dd-be7f00129a25" start_index="0" end="42b3ae68-83b1-42ec-ba4f-404a75974d9a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c4ae910d-c347-4e79-b295-a49fda9c0562" start_index="0" end="b49687fd-d7d0-4e3f-8045-2dd128c991ad" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="42b3ae68-83b1-42ec-ba4f-404a75974d9a" start_index="0" end="b49687fd-d7d0-4e3f-8045-2dd128c991ad" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="42b3ae68-83b1-42ec-ba4f-404a75974d9a" start_index="0" end="1560ce8c-a6b1-432f-ba9a-02b83bf3eb26" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b49687fd-d7d0-4e3f-8045-2dd128c991ad" start_index="0" end="d0ab3297-b41a-4e39-b22d-93d3b4b8f147" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
