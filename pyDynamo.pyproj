@@ -30,6 +30,12 @@
     <InterpreterReference Include="IronPython|2.7-32" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateFloor.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CreateFloors.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CreateSheet.py">
       <SubType>Code</SubType>
     </Compile>
