@@ -48,6 +48,9 @@
     <Compile Include="ExcelWrite.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FilteredElementColllector.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ParamaterCreate.py">
       <SubType>Code</SubType>
     </Compile>
