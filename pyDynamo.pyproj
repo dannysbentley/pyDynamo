@@ -54,6 +54,9 @@
     <Compile Include="ModifyColor.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ModifyDeleteElements.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ModifyMoveElements.py">
       <SubType>Code</SubType>
     </Compile>
