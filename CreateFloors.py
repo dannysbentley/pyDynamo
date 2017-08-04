@@ -6,6 +6,9 @@ clr.AddReference("RevitAPI")
 import Autodesk
 from Autodesk.Revit.DB import *
 
+
+
+
 clr.AddReference("RevitServices")
 import RevitServices 
 from RevitServices.Persistence import DocumentManager
@@ -17,6 +20,7 @@ clr.ImportExtensions(Revit.Elements)
 clr.ImportExtensions(Revit.GeometryConversion)
 
 doc = DocumentManager.Instance.CurrentDBDocument
+
 
 ArrayCurves = IN[0]
 floorType = UnwrapElement(IN[1])

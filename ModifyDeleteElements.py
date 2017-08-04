@@ -16,4 +16,4 @@ for e in elements:
 
 TransactionManager.Instance.TransactionTaskDone()
 
-OUT = "DONE"
+OUT = "done"
