@@ -16,11 +16,17 @@ from System.Collections.Generic import *
 
 doc = DocumentManager.Instance.CurrentDBDocument
 
+###  -----------  FilterElementCollector --------------###
+#All walls in project
 collector = FilteredElementCollector(doc)
-ofClass = collector.OfClass(Wall).ToElements()
+wallElements = collector.OfClass(Wall).ToElements()
 
+###  -----------  FilterElementCollector Active View --------------###
+#All walls in active view
 ActiveView = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(Wall).ToElements()
 
+###  -----------  FilterElementCollector search for 48" walls --------------###
+#collect all walls in Revit then search for SW48
 builtInCategory = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Walls).WhereElementIsNotElementType().ToElements()
 
 wallList = []
@@ -28,14 +34,18 @@ for w in builtInCategory:
     if w.Name.Equals("SW48"):
         wallList.append(w)
 
-walls = list(filter(lambda x : x.Name.Equals("SW48"), builtInCategory))
+###  -----------  FilterElementCollector lambda expression --------------###
+#lambda expression
+walls = list(filter(lambda w : w.Name.Equals("SW48"), builtInCategory))
 
-builtInCats = List[BuiltInCategory]()
-builtInCats.Add(BuiltInCategory.OST_Doors)
-builtInCats.Add(BuiltInCategory.OST_Walls)
+###  -----------  FilterElementCollector using a filter --------------###
+#Using a slow filter to get items. 
+builtInCat = List[BuiltInCategory]()
+builtInCat.Add(BuiltInCategory.OST_Doors)
+builtInCat.Add(BuiltInCategory.OST_Walls)
 
 filter = ElementMulticategoryFilter(builtInCats)
 
 elements = FilteredElementCollector(doc).WherePasses(filter).ToElements()
 
-OUT = ofClass
+OUT = wallElements

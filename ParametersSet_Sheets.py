@@ -23,12 +23,18 @@ app = uiapp.Application
 elements = IN[0]
 
 
-outList = []
-familyType = []
-
 for i in UnwrapElement(elements):
-    p = i.LookupParameter("APZ Status")
+	#Get All Parameters
+    SheetIssueDate = i.LookupParameter("Sheet Issue Date")
+    CheckedBy = i.LookupParameter("Checked By")
+    DrawnBy = i.LookupParameter("Drawn By")
+    
     TransactionManager.Instance.EnsureInTransaction(doc)
-    p.Set("Setting a Parameter")
+    #Set Parameters
+    SheetIssueDate.Set(" ")
+    CheckedBy.Set("LEAD")
+    DrawnBy.Set("TEAM")
     TransactionManager.Instance.TransactionTaskDone()
+    
 
+OUT = 0
