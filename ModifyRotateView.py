@@ -7,7 +7,7 @@ from Autodesk.Revit.DB import *
 
 clr.AddReference('RevitServices')
 from RevitServices.Persistence import DocumentManager
-from RevitServices.Transaction import TransactionManager
+from RevitServices.Transactions import TransactionManager
 
 doc = DocumentManager.Instance.CurrentDBDocument
 
