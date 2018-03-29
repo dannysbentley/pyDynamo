@@ -20,12 +20,12 @@ TransactionManager.Instance.EnsureInTransaction(doc)
 
 collector = FilteredElementCollector(doc).OfClass(View)
 for i in collector:
-	if i.IsTemplate == True and i.Name == viewTempName:
-		viewTemp = i
+    if i.IsTemplate == True and i.Name == viewTempName:
+        viewTemp = i
 
 for i in views:
-	i.ViewTemplateId = viewTemp.Id
-		
+    i.ViewTemplateId = viewTemp.Id
+
 TransactionManager.Instance.TransactionTaskDone()
 
-OUT=views
+OUT = views
