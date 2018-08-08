@@ -1,27 +1,39 @@
+"""
+ModifySplitColumns
+"""
+__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__twitter__ = '@danbentley'
+__version__ = '1.0.0'
+
+"""
+Sample on how to rotate model elements.
+Use this sample along with the Video on Youtube.
+""" 
 import clr
- 
+ # import Revit Services 
 clr.AddReference("RevitServices")
 import RevitServices
 from RevitServices.Persistence import DocumentManager
 from RevitServices.Transactions import TransactionManager
-doc =  DocumentManager.Instance.CurrentDBDocument
-
+# import Revit Nodes 
 clr.AddReference("RevitNodes")
 import Revit
 clr.ImportExtensions(Revit.Elements)
 clr.ImportExtensions(Revit.GeometryConversion)
-
+# import Revit API
 clr.AddReference("RevitAPI")
 from Autodesk.Revit.DB import *
 
 # Import System Collections...
 import System
 from System.Collections.Generic import *
-
+# get Revit's current document. 
+doc =  DocumentManager.Instance.CurrentDBDocument
+# add object to a list. 
 def tolist(obj1):
     if hasattr(obj1,"__iter__"): return obj1
     else: return [obj1]
- 
+ # find level using the level id. 
 def FindLevelIndex(levels, lev):
     ind = None
     i = 0
@@ -30,7 +42,7 @@ def FindLevelIndex(levels, lev):
             ind = i
         i = i+1
     return ind
- 
+ # copy level or column and set top and bottom constraints. 
 def CopyColByLevel(col, b, t):
     colOut = None
     try:
@@ -44,15 +56,16 @@ def CopyColByLevel(col, b, t):
     except Exception, e:
         colOut = e.message
     return colOut
- 
+#Dynamo inputs  
 run = tolist(IN[0])[0]
 cols = tolist(UnwrapElement(IN[1]))
-
+# empty list 
 outList = []
 if run:
+    # get levels using lambda expression 
     levels = list([l for l in FilteredElementCollector(doc).OfClass(Level).ToElements()])
     levels.sort(key=lambda x: x.Elevation, reverse=False)
-    
+    # start transaction in Revit. 
     TransactionManager.Instance.EnsureInTransaction(doc)
     for c in cols:
         arr = []
@@ -72,7 +85,7 @@ if run:
                     i = i+1
                 outList.append(arr)
                 doc.Delete(c.Id)
-    
+    # transaction end in Revit
     TransactionManager.Instance.TransactionTaskDone()
     OUT = outList
 else:

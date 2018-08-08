@@ -1,3 +1,14 @@
+"""
+PostableCommand
+"""
+__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__twitter__ = '@danbentley'
+__version__ = '1.0.0'
+
+"""
+UnderConstruction - still hasn't been developed. 
+Use this sample along with the Video on Youtube.
+"""
 import clr
 import System
 

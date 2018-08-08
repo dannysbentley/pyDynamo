@@ -1,19 +1,31 @@
+"""
+ModifySplitWalls
+"""
+__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__twitter__ = '@danbentley'
+__version__ = '1.0.0'
+
+"""
+Sample on how to split walls by level.
+Use this sample along with the Video on Youtube.
+""" 
 import clr
- 
+# import Revit Services  
 clr.AddReference("RevitServices")
 import RevitServices
 from RevitServices.Persistence import DocumentManager
 from RevitServices.Transactions import TransactionManager
+# get the current document in Revit. 
 doc =  DocumentManager.Instance.CurrentDBDocument
- 
+# import Revit Nodes 
 clr.AddReference("RevitNodes")
 import Revit
 clr.ImportExtensions(Revit.Elements)
 clr.ImportExtensions(Revit.GeometryConversion)
- 
+# import Revit API
 clr.AddReference("RevitAPI")
 from Autodesk.Revit.DB import *
- 
+# import system
 import System
 from System.Collections.Generic import *
  
