@@ -1,19 +1,31 @@
+"""
+FilteredElementCollector
+"""
+__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__twitter__ = '@danbentley'
+__version__ = '1.0.0'
+
+"""
+Sample on how get elements using a filtered element collector.
+Use this sample along with the Video on Youtube.
+"""
 import clr
+# import RevitNodes
 clr.AddReference("RevitNodes")
 import Revit
 clr.ImportExtensions(Revit.Elements)
-
+# import Revit Services 
 clr.AddReference("RevitServices")
 import RevitServices
 from RevitServices.Persistence import DocumentManager
-
+# import Revit API
 clr.AddReference("RevitAPI")
 import Autodesk
 from Autodesk.Revit.DB import *
-
+# import system.
 import System
 from System.Collections.Generic import *
-
+# get the current Revit document. 
 doc = DocumentManager.Instance.CurrentDBDocument
 
 ###  -----------  FilterElementCollector --------------###

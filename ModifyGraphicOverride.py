@@ -1,16 +1,28 @@
+"""
+ModifyGraphicOverride
+"""
+__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__twitter__ = '@danbentley'
+__version__ = '1.0.0'
+
+"""
+Sample on how to override graphics.
+Use this sample along with the Video on Youtube.
+""" 
 import clr
+# import ProtoGeometry 
 clr.AddReference('ProtoGeometry')
 from Autodesk.DesignScript.Geometry import *
-
+# import Revit Node
 clr.AddReference("RevitNodes")
 import Revit
 clr.ImportExtensions(Revit.Elements)
-
+# import Revit Services 
 clr.AddReference("RevitServices")
 import RevitServices
 from RevitServices.Persistence import DocumentManager
 from RevitServices.Transactions import TransactionManager
-
+# import Revit API
 clr.AddReference("RevitAPI")
 import Autodesk
 from Autodesk.Revit.DB import *

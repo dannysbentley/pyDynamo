@@ -1,13 +1,24 @@
-import clr
+"""
+GetFloorTopBoundary
+"""
+__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__twitter__ = '@danbentley'
+__version__ = '1.0.0'
 
+"""
+Sample on how to get the analytical surface of a floor.
+Use this sample along with the Video on Youtube.
+"""
+import clr
+# import Revit API
 clr.AddReference('RevitAPI')
 from Autodesk.Revit.DB.Structure import *
-
+# import Revit Services
 clr.AddReference('RevitServices')
 import RevitServices
 from RevitServices.Persistence import DocumentManager
 from RevitServices.Transactions import TransactionManager
-
+# Get the current Revit document. 
 doc = DocumentManager.Instance.CurrentDBDocument
 
 #Functions for list handling
