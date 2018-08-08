@@ -1,3 +1,14 @@
+"""
+CreateWall
+"""
+__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__twitter__ = '@danbentley'
+__version__ = '1.0.0'
+
+"""
+Sample on how to create a Wall.
+Use this sample along with the Video on Youtube.
+"""
 import clr
 #Import module for Revit 
 clr.AddReference("RevitNodes")
@@ -11,8 +22,9 @@ from RevitServices.Transactions import TransactionManager
 #import Revit API 
 clr.AddReference('RevitAPI')
 from Autodesk.Revit.DB import *
-#get the document 
+#get the current document in Revit.
 doc = DocumentManager.Instance.CurrentDBDocument
+
 #Dynamo input 
 baseLevel = UnwrapElement(IN[0])
 topLevel = UnwrapElement(IN[1])

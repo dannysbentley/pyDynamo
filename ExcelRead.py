@@ -1,9 +1,20 @@
-import clr
+"""
+ExcelRead
+"""
+__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__twitter__ = '@danbentley'
+__version__ = '1.0.0'
 
+"""
+Sample on how to read an excel file.
+Use this sample along with the Video on Youtube.
+"""
+import clr
+# import the Excel Interop. 
 clr.AddReference('Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c')
 from Microsoft.Office.Interop import Excel
 from System.Runtime.InteropServices import Marshal
-
+# file path of excel file. 
 path = IN[0]
 
 # Instantiate the Excel Application
@@ -24,7 +35,7 @@ r1 = x1range.Value2
 r2 = x2range.Value2
 
 OUT = r1, r2
-
+# close and release excel file from memory. 
 ex.ActiveWorkbook.Close(False)
 Marshal.ReleaseComObject(ws)
 Marshal.ReleaseComObject(workbook)

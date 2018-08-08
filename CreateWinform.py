@@ -1,8 +1,20 @@
+"""
+CreateWinform
+"""
+__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__twitter__ = '@danbentley'
+__version__ = '1.0.0'
+
+"""
+Sample on how to create a Windows form.
+Use this sample along with the Video on Youtube.
+"""
 import clr
-
+# import windows form 
 clr.AddReference("System.Windows.Forms")
+#import system drawing 
 clr.AddReference("System.Drawing")
-
+# import system
 import System
 
 from System.Windows.Forms import *
