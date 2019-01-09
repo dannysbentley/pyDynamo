@@ -20,7 +20,7 @@ LevelParam = BuiltInParameter.LEVEL_PARAM
 
 object = []
 List = []
-
+#this iterates through the floors
 for f in floors:
 	feet = f.get_Parameter(BottomElevParam).AsDouble()
 	meter = feet * 3.281
