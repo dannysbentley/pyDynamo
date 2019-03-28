@@ -53,3 +53,4 @@ ProcessList(setProjection,analyticalFloor)
 TransactionManager.Instance.TransactionTaskDone()
 
 OUT = analyticalFloor
+

@@ -12,3 +12,7 @@ def sortDict(keys, values):
 	for value in sorted_pair:
 		sorted_values.append(value[1])
 	return sorted_values
+
+
+#also can use this 
+list = sorted(input, key = lambda p : (p.X))
