@@ -1,3 +1,8 @@
+__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__twitter__ = '@danbentley'
+__Website__ = 'http://dannybentley.tech/'
+__version__ = '1.0.0'
+
 # Enable Python support and load DesignScript library
 import clr
 clr.AddReference('ProtoGeometry')

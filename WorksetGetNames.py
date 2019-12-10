@@ -15,6 +15,11 @@ clr.AddReference('RevitAPI')
 from Autodesk.Revit.DB import *
 # import Revit Services 
 clr.AddReference('RevitServices')
+__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__twitter__ = '@danbentley'
+__Website__ = 'http://dannybentley.tech/'
+__version__ = '1.0.0'
+
 import RevitServices
 from RevitServices.Persistence import DocumentManager
 # get the current document in Revit.
