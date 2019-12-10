@@ -1,5 +1,9 @@
 # Dynamo BIM Samples
-Dynamo examples to use as part of my Youtube channel.  
+Dynamo examples to use as part of my Youtube channel.
+
+Hire me for Revit API and Dynamo Development
+Website http://dannybentley.tech/
+danny_bentley@hotmail.com
 
 ## Installation
 Clone project or copy and paste from .py files.  
