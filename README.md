@@ -2,7 +2,7 @@
 Dynamo examples to use as part of my Youtube channel.
 
 # Hire me for Revit API and Dynamo Development
-Website: http://dannybentley.tech/ Emails: danny_bentley@hotmail.com
+Website: http://dannybentley.tech/home Emails: danny_bentley@hotmail.com
 
 ## Installation
 Clone project or copy and paste from .py files.  
