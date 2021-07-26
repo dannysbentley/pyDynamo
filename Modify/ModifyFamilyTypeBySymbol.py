@@ -22,14 +22,14 @@ from RevitServices.Transactions import TransactionManager
 doc = DocumentManager.Instance.CurrentDBDocument
 #Dynamo input 
 familyInstance = UnwrapElement(IN[0]) # elements 
-type = UnwrapElement(IN[1]) # type 
+familyType = UnwrapElement(IN[1]) # type 
 count = 0 # count
 # Begin Revit transaction.
 TransactionManager.Instance.EnsureInTransaction(doc)
 # loop over each element 
 for item in familyInstance:
     # Change Revit Element. 
-    item.ChangeTypeId(type.Id)
+    item.Symbol = familyType
     count += 1
 # end transaction. 
 TransactionManager.Instance.TransactionTaskDone()
