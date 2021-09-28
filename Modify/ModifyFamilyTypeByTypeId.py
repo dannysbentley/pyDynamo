@@ -1,7 +1,7 @@
 """
 ModifyChangeFamilyType
 """
-__author__ = 'Danny Bentley - danny_bentley@hotmail.com'
+__author__ = 'Danny Bentley - dannysbentley@gmail.com'
 __Website__ = 'http://dannybentley.tech/home'
 __version__ = '1.0.0'
 

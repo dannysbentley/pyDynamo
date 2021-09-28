@@ -1,0 +1,145 @@
+<Workspace Version="1.3.0.875" X="253.259951561852" Y="144.739684599944" zoom="0.8423376893109" ScaleFactor="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List.List" resolvedName="List.List" assemblyName="Archi-lab_Grimshaw.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <PythonNodeModels.PythonNode guid="82d0d209-e195-4c5a-afde-e85094e27465" type="PythonNodeModels.PythonNode" nickname="Python Script" x="513.199109987899" y="233.521632749631" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <Script>import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+import Autodesk
+import System
+
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+sheetnames = IN[0]
+sheetNumber = IN[1]
+titleblock = UnwrapElement(IN[2])
+sheetlist = list()
+
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+for number in range(len(sheetNumber)):
+    newsheet = ViewSheet.Create(doc, titleblock.Id)
+    newsheet.Name = sheetnames[number]
+    newsheet.SheetNumber = sheetNumber[number]
+    sheetlist.append(newsheet.ToDSType(False))
+
+TransactionManager.Instance.TransactionTaskDone()
+OUT = sheetlist</Script>
+    </PythonNodeModels.PythonNode>
+    <CoreNodeModels.Watch guid="f3c9eff3-e77f-464a-8f2b-e0470d19e01c" type="CoreNodeModels.Watch" nickname="Watch" x="654.176722310373" y="234.952207300908" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <DSRevitNodesUI.FamilyTypes guid="97f0093c-8fbf-4638-80ba-f99ad7bff1c8" type="DSRevitNodesUI.FamilyTypes" nickname="Family Types" x="162.349720328143" y="358.92868841531" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="1125:Titleblock E - Standard:SOM-E-Vertical" />
+    <PythonNodeModels.PythonNode guid="7c0597d9-4f26-4de1-846e-76e41065f2c1" type="PythonNodeModels.PythonNode" nickname="Python Script" x="-112.961792576461" y="192.351918983092" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+
+clr.AddReference("System.Windows.Forms")
+clr.AddReference("System.Drawing")
+import System
+
+from System.Windows.Forms import *
+from System.Drawing import *
+
+# Create a class form 
+class CreateWindow(Form):
+    def __init__(self):
+        #Create the form
+        self.Name = "Create Window"
+        self.Text = "Create Window"
+        self.Size = Size(500, 150)
+        self.CenterToScreen()
+        self.values = []
+        
+        #Create label for sheet name
+        labelSheetName = Label(Text = "Sheet Name")
+        labelSheetName.Parent = self
+        labelSheetName.Location = Point(30,20)
+
+        #Create label for sheet number 
+        labelSheetNumber = Label(Text = "Sheet Number")
+        labelSheetNumber.Parent = self
+        labelSheetNumber.Location = Point(30,50)
+        
+        #Create Textbox for Sheet Name
+        self.textboxSheetName = TextBox()
+        self.textboxSheetName.Parent = self
+        self.textboxSheetName.Text = "Sheet Name"
+        self.textboxSheetName.Location = Point(150,20)
+        self.textboxSheetName.Width = 150
+        
+        #Create Textbox for Sheet Number
+        self.textboxSheetNumber = TextBox()
+        self.textboxSheetNumber.Parent = self
+        self.textboxSheetNumber.Text = "Sheet Number"
+        self.textboxSheetNumber.Location = Point(150,50)
+        self.textboxSheetNumber.Width = 150
+        
+        #Create button 
+        button = Button()
+        button.Parent = self
+        button.Text = "Ok"
+        button.Location = Point(400,60)
+        #Register Event
+        button.Click += self.ButtonClicked
+
+    def ButtonClicked(self, sender, args):
+        if sender.Click:
+            self.values.append(self.textboxSheetName.Text)
+            self.values.append(self.textboxSheetNumber.Text)
+            self.Close()
+
+if IN[0]:
+    form = CreateWindow()
+    Application.Run(form)
+
+    OUT = form.values
+</Script>
+    </PythonNodeModels.PythonNode>
+    <CoreNodeModels.Input.BoolSelector guid="f1c7737b-d0bb-48d9-b9cc-ed1e35bb069f" type="CoreNodeModels.Input.BoolSelector" nickname="Boolean" x="-265.048037616002" y="191.395969678487" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Boolean>True</System.Boolean>
+    </CoreNodeModels.Input.BoolSelector>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="0fd9edf5-7d46-4960-8fe0-621bbd3dd246" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FirstItem" x="73.7626504844788" y="141.842316357067" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.FirstItem@var[]..[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="33b9b8fe-604c-4062-a793-0b98e48a6ac8" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.LastItem" x="75.7979790845833" y="243.608746362291" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="DSCoreNodes.dll" function="DSCore.List.LastItem@var[]..[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.CreateList guid="21f9d77a-2604-4a15-b159-ac4ff31594ac" type="CoreNodeModels.CreateList" nickname="List.Create" x="268.946984991663" y="147.455451652998" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.CreateList>
+    <CoreNodeModels.CreateList guid="11e1de6f-6629-4b51-855a-4e21aa518d58" type="CoreNodeModels.CreateList" nickname="List.Create" x="262.298987497176" y="239.445371893054" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.CreateList>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="82d0d209-e195-4c5a-afde-e85094e27465" start_index="0" end="f3c9eff3-e77f-464a-8f2b-e0470d19e01c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="97f0093c-8fbf-4638-80ba-f99ad7bff1c8" start_index="0" end="82d0d209-e195-4c5a-afde-e85094e27465" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7c0597d9-4f26-4de1-846e-76e41065f2c1" start_index="0" end="0fd9edf5-7d46-4960-8fe0-621bbd3dd246" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7c0597d9-4f26-4de1-846e-76e41065f2c1" start_index="0" end="33b9b8fe-604c-4062-a793-0b98e48a6ac8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f1c7737b-d0bb-48d9-b9cc-ed1e35bb069f" start_index="0" end="7c0597d9-4f26-4de1-846e-76e41065f2c1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0fd9edf5-7d46-4960-8fe0-621bbd3dd246" start_index="0" end="21f9d77a-2604-4a15-b159-ac4ff31594ac" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="33b9b8fe-604c-4062-a793-0b98e48a6ac8" start_index="0" end="11e1de6f-6629-4b51-855a-4e21aa518d58" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="21f9d77a-2604-4a15-b159-ac4ff31594ac" start_index="0" end="82d0d209-e195-4c5a-afde-e85094e27465" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="11e1de6f-6629-4b51-855a-4e21aa518d58" start_index="0" end="82d0d209-e195-4c5a-afde-e85094e27465" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
