@@ -5,5 +5,3 @@ __version__ = '1.0.0'
 
 # under construction.
 import clr
-
-var clockwiseSorting = function(input, basic)
